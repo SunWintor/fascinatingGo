@@ -19,7 +19,7 @@ type Obj2 struct {
 }
 
 var (
-	runTimes = int64(7000000)
+	runTimes = int64(10000000)
     wg sync.WaitGroup
 	obj = Obj{}
 	obj2 = Obj2{}
@@ -39,6 +39,8 @@ func main() {
 }
 
 func testCacheLine() {
+	// 感兴趣可以把他们写到一个func里，这样差距会更明显
+	// 这里用两个func是为了更清晰地表示他们跑的是同一段代码
 	testRun(func(){atomic.AddUint64(&obj.num, 1)}, func(){atomic.AddUint64(&obj.num2, 1)}, "runTime1")
 	testRun(func(){atomic.AddUint64(&obj2.num, 1)}, func(){atomic.AddUint64(&obj2.num2, 1)}, "runTime2")
 }
