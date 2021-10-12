@@ -19,14 +19,17 @@ import (
 //     其实整个float32的值，就是C，B来控制偏移量而已。可以理解B控制小数点在什么位置。
 //     同时，二进制的0.1就是十进制的0.5，那么很简单，只需要判断B位移后的右侧那个比特位是不是1就能确定是否要进位了。
 func main() {
-	println(fmt.Sprintf("%f",roundFloat32(10.50001))) // 11.000000
-	println(fmt.Sprintf("%f",roundFloat32(10.49999))) // 10.000000
+	println(fmt.Sprintf("%f",roundFloat32(10.50001)))  // 11.000000
+	println(fmt.Sprintf("%f",roundFloat32(10.49999)))  // 10.000000
 	println(fmt.Sprintf("%f",roundFloat32(-10.50001))) // -11.000000
 	println(fmt.Sprintf("%f",roundFloat32(-10.49999))) // -10.000000
 	// 注意，这里会因为浮点数的精度问题，产生异常。
 	// 因为二进制的浮点数是有限的，如果标识值的一些位在float32的C中，处于C长度外的位置，那么就会丢失精度。
 	// 如果两个数字的C只有这一点是有区别的，那么在内存中存储的比特位也就完全一致，此时他们就是“相等”的。
-	println(math.Float32bits(1000.49999) == math.Float32bits(1000.49998)) // true
+	println(math.Float32bits(1000.49999) == math.Float32bits(1000.49998))          // true
+	println(100000 == math.Float32frombits(math.Float32bits(99999.997)))             // true
+	println(func() float32 { return 100000}() == func() float32 { return 99999.997}()) // true
+	println(100000 == 99999.997)                                                 // false
 }
 
 const (
