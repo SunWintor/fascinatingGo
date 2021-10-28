@@ -9,3 +9,4 @@
 * bit_round_float32.go 关于浮点数四舍五入的实现（做完之后和golang官方库的比了一下，速度几乎一样，看了一下源码，似乎是用类似的思路实现的）
 * cacheline_padding.go 关于CPU对于缓存一致性对于性能影响的猜想和验证。
 * disorder.go 关于CPU指令重排序。
+* branch_prediction.go 关于分支预测对性能影响的猜想和验证。
