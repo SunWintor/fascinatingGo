@@ -24,6 +24,8 @@ func main() {
 	println(unsafe.Sizeof("这是一个超级长的字符串，但是这里的输出只会是16。")) // 16
 	println(unsafe.Sizeof("这也16")) // 16
 	println(unsafe.Sizeof("")) // 16
+	// 题外话题外话
+	println(unsafe.Sizeof(struct{}{})) // 0
 }
 
 // byte占用情况（假设一个数字就是一个byte）
